@@ -34,18 +34,19 @@ namespace lists
 
             foreach (string planet in planetList)
             {
-                foreach (var probe in probes) {
-                    foreach (KeyValuePair<string, string> satelite in probe)
-                    {
+                List<string> visitedProbes = new List<string>();
 
-                        if (planet == satelite.Key) {
-                            Console.WriteLine("{0} : {1}", planet, satelite.Value);
+                foreach (Dictionary<string, string> probe in probes) {
+
+                        if (probe.ContainsKey(planet)) {
+                            visitedProbes.Add(probe[planet]);
                         }
+                }
+                if (visitedProbes.Count != 0) {
+                    Console.WriteLine($"{planet}: {String.Join(",", visitedProbes)}");
 
-                    }
                 }
             }
-
 
         }
     }
